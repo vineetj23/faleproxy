@@ -33,8 +33,8 @@ describe('Integration Tests', () => {
   afterAll(async () => {
     // Kill the test server and clean up
     if (server && server.pid) {
-      server.kill('SIGTERM');
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      process.kill(-server.pid, 'SIGTERM');
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
     
     await fs.unlink('app.test.js').catch(() => {});
